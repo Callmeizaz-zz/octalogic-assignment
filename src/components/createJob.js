@@ -8,11 +8,11 @@ import {
   Select,
 } from "@material-ui/core";
 import Styled from "styled-components";
-import { useId } from "react-id-generator";
 import { uniqueId } from "lodash";
 // Redux
-import addJob from "../redux/actions/jobAction";
+import { addJob } from "../redux/actions/jobAction";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function CreateJob() {
   const [skills, setSkills] = useState([]);
@@ -21,7 +21,7 @@ function CreateJob() {
     desc: "",
   });
   const technologies = ["ReactJS", "NodeJS", "JavaScript"];
-
+  const history = useHistory();
   const dispatch = useDispatch();
   const handleChange = (e) => {
     setSkills(e.target.value);
@@ -43,6 +43,9 @@ function CreateJob() {
       })
     );
     localStorage.setItem("jobID", jobId);
+    history.push("/");
+    setData({ title: "", desc: "" });
+    setSkills([]);
   };
 
   return (
@@ -66,6 +69,7 @@ function CreateJob() {
           ))}
         </Select>
       </FormControl>
+
       <Button variant="contained" color="primary" onClick={handleSubmit}>
         Add Job
       </Button>

@@ -7,4 +7,13 @@ const addJob = (data) => (dispatch) => {
   });
 };
 
-export default addJob;
+const addApplicant = (data) => (dispatch) => {
+  dispatch({
+    type: "ADD_APPLICANT",
+    payload: {
+      applicant: data,
+    },
+  });
+};
+
+export { addApplicant, addJob };

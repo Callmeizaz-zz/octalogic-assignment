@@ -1,5 +1,6 @@
 const initState = {
   job: [],
+  applicant: [],
 };
 
 const JobReducer = (state = initState, action) => {
