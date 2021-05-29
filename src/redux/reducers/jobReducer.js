@@ -11,6 +11,20 @@ const JobReducer = (state = initState, action) => {
         job: [...state.job, action.payload.job],
       };
     }
+    case "ADD_APPLICANT": {
+      return {
+        ...state,
+        applicant: [...state.applicant, action.payload.applicant],
+      };
+    }
+    case "REMOVE_APPLICANT": {
+      return {
+        ...state,
+        applicant: state.applicant.filter(
+          (item) => item.userId !== action.payload.userID
+        ),
+      };
+    }
     default: {
       return {
         ...state,

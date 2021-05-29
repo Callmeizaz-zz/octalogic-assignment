@@ -34,18 +34,24 @@ function CreateJob() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const jobId = uniqueId();
-    dispatch(
-      addJob({
-        title: data.title,
-        desc: data.desc,
-        jobId: jobId,
-        skills: skills,
-      })
-    );
-    localStorage.setItem("jobID", jobId);
-    history.push("/");
-    setData({ title: "", desc: "" });
-    setSkills([]);
+    const { title, desc } = data;
+
+    if (title !== "" && desc !== "" && skills.length) {
+      dispatch(
+        addJob({
+          title: data.title,
+          desc: data.desc,
+          jobId: jobId,
+          skills: skills,
+        })
+      );
+      localStorage.setItem("jobID", jobId);
+      history.push("/");
+      setData({ title: "", desc: "" });
+      setSkills([]);
+    } else {
+      alert("Please fill all the fields");
+    }
   };
 
   return (

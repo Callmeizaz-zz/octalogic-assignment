@@ -19,8 +19,8 @@ function ApplyJob() {
   const [detail, setDetails] = useState({
     name: "",
     notes: "",
-    notice: "",
-    salary: null,
+    notice: 0,
+    salary: 0,
   });
   const technologies = ["ReactJS", "NodeJS", "JavaScript"];
 
@@ -56,6 +56,7 @@ function ApplyJob() {
           notice: detail.notice,
           salary: detail.salary,
           userId: userId,
+          jobId: jobId,
         })
       );
 
@@ -72,11 +73,16 @@ function ApplyJob() {
       <h1>Apply Job</h1>
       <FormControl className="form">
         <InputLabel htmlFor="job">Job Code</InputLabel>
-        <Input name="jobId" value={jobId} disabled />
+        <Input required name="jobId" value={jobId} disabled />
       </FormControl>
       <FormControl className="form">
         <InputLabel htmlFor="name">Name</InputLabel>
-        <Input name="name" value={detail.name} onChange={handleInput} />
+        <Input
+          required
+          name="name"
+          value={detail.name}
+          onChange={handleInput}
+        />
       </FormControl>
       <FormControl className="form">
         <InputLabel htmlFor="Notes">Notes</InputLabel>
@@ -94,11 +100,23 @@ function ApplyJob() {
       </FormControl>
       <FormControl className="form">
         <InputLabel htmlFor="notice">Notice Period</InputLabel>
-        <Input name="notice" value={detail.notice} onChange={handleInput} />
+        <Input
+          required
+          name="notice"
+          type="number"
+          value={detail.notice}
+          onChange={handleInput}
+        />
       </FormControl>
       <FormControl className="form">
         <InputLabel htmlFor="salary">Salary Asked</InputLabel>
-        <Input name="salary" value={detail.salary} onChange={handleInput} />
+        <Input
+          required
+          name="salary"
+          type="number"
+          value={detail.salary}
+          onChange={handleInput}
+        />
       </FormControl>
       <Button variant="contained" color="primary" onClick={handleSubmit}>
         Apply Job

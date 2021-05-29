@@ -15,5 +15,13 @@ const addApplicant = (data) => (dispatch) => {
     },
   });
 };
+const removeApplicant = (id) => (dispatch) => {
+  dispatch({
+    type: "REMOVE_APPLICANT",
+    payload: {
+      userID: id,
+    },
+  });
+};
 
-export { addApplicant, addJob };
+export { addApplicant, addJob, removeApplicant };
